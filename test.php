@@ -7,6 +7,19 @@ require_once 'vendor/autoload.php';
 $math = new Math();
 
 //Positive Integer Tests
+
+        $answer = $math->evaluate('(2+2) + 1');
+        var_dump($answer);echo "<br /><br />";
+        // int(5)
+
+        $answer = $math->evaluate('(2+2) > 5');
+        var_dump($answer);echo "<br /><br />";
+        // boolean false
+        
+        $answer = $math->evaluate('(6+2) > 5');
+        var_dump($answer);echo "<br /><br />";
+        // boolean true
+        
 	$answer = $math->evaluate('10 / 5');
 	var_dump($answer);echo "<br /><br />";
 	// int(2)

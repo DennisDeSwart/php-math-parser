@@ -60,8 +60,12 @@ class Math
                 $stack->push(TerminalExpression::factory($value));
             }
         }
-
-        return $operator ? $operator->render() : $this->render($stack);
+        
+        if(is_bool($operator)){
+            return $operator; // render doesn't work for booleans
+        } else {
+            return $operator ? $operator->render() : $this->render($stack);
+        }
     }
 
     protected function extractVariables($token)

@@ -11,8 +11,11 @@
 namespace PHPMathParser;
 
 use PHPMathParser\Expressions\Addition;
+use PHPMathParser\Expressions\ComparisonGreaterThan;
+use PHPMathParser\Expressions\ComparisonLessThan;
 use PHPMathParser\Expressions\Division;
 use PHPMathParser\Expressions\Multiplication;
+use PHPMathParser\Expressions\Boolean;
 use PHPMathParser\Expressions\Number;
 use PHPMathParser\Expressions\Parenthesis;
 use PHPMathParser\Expressions\Power;
@@ -32,6 +35,8 @@ abstract class TerminalExpression
     {
         if (is_object($value) && $value instanceof self) {
             return $value;
+        } elseif (is_bool($value)) {
+            return new Boolean($value);
         } elseif (is_numeric($value)) {
             return new Number($value);
         } elseif ($value == 'u') {
@@ -48,7 +53,11 @@ abstract class TerminalExpression
             return new Parenthesis($value);
         } elseif ($value == '^') {
             return new Power($value);
-        }
+        } elseif ($value == '>') {
+            return new ComparisonGreaterThan($value);
+        } elseif ($value == '<') {
+            return new ComparisonLessThan($value);
+        } 
         throw new \Exception('Undefined Value ' . $value);
     }
 

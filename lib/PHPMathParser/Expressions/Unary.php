@@ -14,7 +14,7 @@ use PHPMathParser\Stack;
 
 class Unary extends Operator
 {
-    protected $precidence = 7;
+    protected $precedence = 7;
 
     public function isUnary()
     {
