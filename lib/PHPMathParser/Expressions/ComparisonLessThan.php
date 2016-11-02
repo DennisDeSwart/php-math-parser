@@ -15,7 +15,7 @@ use PHPMathParser\Stack;
 
 class ComparisonLessThan extends Operator
 {
-    protected $precedence = 8;
+    protected $precedence = 1;
 
     public function operate(Stack $stack)
     {
