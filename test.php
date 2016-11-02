@@ -12,7 +12,7 @@ $math = new Math();
         var_dump($answer);echo "<br /><br />";
         // int(5)
 
-        $answer = $math->evaluate('(2+2) > 5');
+        $answer = $math->evaluate('32 - 8');
         var_dump($answer);echo "<br /><br />";
         // boolean false
         

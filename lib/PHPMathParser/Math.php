@@ -134,12 +134,12 @@ class Math
 
     protected function tokenize($string)
     {
-        $parts = preg_split('((\d+\.?\d+|\+|-|\(|\)|\*|/)|\s+)', $string, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
+        $parts = preg_split('((\d+\.?\d+|\+|<|>|\(|\)|\*|/)|\s+)', $string, null, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE);
         $parts = array_map('trim', $parts);
         foreach ($parts as $key => &$value) {
             //if this is the first token or we've already had an operator or open paren, this is unary
             if ($value == '-') {
-                if ($key - 1 < 0 || in_array($parts[$key - 1], array('+', '-', '*', '/', '('))) {
+                if ($key - 1 < 0 || in_array($parts[$key - 1], array('<','>','+', '-', '*', '/', '('))) {
                     $value = 'u';
                 }
             }
