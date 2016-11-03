@@ -7,12 +7,34 @@
 
     $math = new Math();
     echo '<pre>'; 
-        
-//Positive Integer Tests
-
-    $answer = $math->evaluate('-8 < 2');
+    
+    /**
+     * Optional error handling
+     */
+    function runEvaluation($math, $exp){
+        try{
+            $answer = $math->evaluate($exp);
+            return $answer;
+        } catch (\Exception $ex) {
+            return 'Message: ' .$ex->getMessage();
+        }
+    }
+    
+    // Error handling tests
+     $answer = runEvaluation($math, '-8 */ 2');
     var_dump($answer);echo "<br /><br />";
-    // boolean true
+    // error during multiplication
+    
+    $answer = runEvaluation($math, '-8 * someUndefinedValue');
+    var_dump($answer);echo "<br /><br />";
+    // contains value that is not integer or boolean
+    
+    $answer = runEvaluation($math, 'textThatCannotBeParsed');
+    var_dump($answer);echo "<br /><br />";
+    // contains value that is not integer or boolean
+    
+    
+//Comparison Tests
 
      $answer = $math->evaluate('-8 > 2');
     var_dump($answer);echo "<br /><br />";
@@ -37,7 +59,8 @@
     $answer = $math->evaluate('-8 < 5');
     var_dump($answer);echo "<br /><br />";
     // boolean true
-
+    
+//Positive Integer Tests
     $answer = $math->evaluate('(6+2) < 5');
     var_dump($answer);echo "<br /><br />";
     // boolean false

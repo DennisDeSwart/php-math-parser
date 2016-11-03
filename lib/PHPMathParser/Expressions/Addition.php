@@ -17,7 +17,17 @@ class Addition extends Operator
     protected $precedence = 4;
 
     public function operate(Stack $stack)
-    {
-        return $stack->pop()->operate($stack) + $stack->pop()->operate($stack);
+    { 
+        $operation1  = $stack->pop()->operate($stack);
+        
+        $pop2  = $stack->pop();       
+        if(empty($pop2)){
+            throw new \Exception('Error adding');
+        }
+        
+        $operation2 = $pop2->operate($stack);
+            
+        $result = $operation1 + $operation2;
+        return $result;
     }
 }

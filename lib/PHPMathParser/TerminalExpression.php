@@ -58,7 +58,7 @@ abstract class TerminalExpression
         } elseif ($value == '<') {
             return new ComparisonLessThan($value);
         } 
-        throw new \Exception('Undefined Value ' . $value);
+        throw new \Exception('Expression contains value that is not integer or boolean => ' . $value);
     }
 
     abstract public function operate(Stack $stack);

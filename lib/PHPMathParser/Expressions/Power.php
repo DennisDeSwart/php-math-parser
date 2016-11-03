@@ -19,7 +19,11 @@ class Power extends Operator
     public function operate(Stack $stack)
     {
         $left = $stack->pop()->operate($stack);
-        $right = $stack->pop()->operate($stack);
+        $popRight  = $stack->pop();       
+        if(empty($popRight)){
+            throw new \Exception('Error division');
+        }
+        $right = $popRight->operate($stack);
 
         return pow($left, $right);
     }

@@ -20,7 +20,12 @@ class ComparisonGreaterThan extends Operator
     public function operate(Stack $stack)
     {
         $val1 = $stack->pop()->operate($stack) ;
-        $val2 = $stack->pop()->operate($stack);
+        
+        $pop2  = $stack->pop();       
+        if(empty($pop2)){
+            throw new \Exception('Error comparison GreaterThan');
+        }
+        $val2 = $pop2->operate($stack);
 
         $bool = $val2 > $val1;
         return $bool;
