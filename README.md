@@ -11,6 +11,7 @@ https://github.com/ircmaxell/php-math-parser
 ## Added features:
 - Boolean comparison Greater Than, 
 - Boolean comparison Less Than
+- optional Error Handling
 
 ## Any questions?
 
