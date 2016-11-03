@@ -1,6 +1,9 @@
 <?php
 
 
+/**
+ * Initialize
+ */
     use PHPMathParser\Math;
 
     require_once 'vendor/autoload.php';
@@ -8,9 +11,10 @@
     $math = new Math();
     echo '<pre>'; 
     
-    /**
-     * Optional error handling
-     */
+    
+/**
+ * Optinal error handling
+ */
     function runEvaluation($math, $exp){
         try{
             $answer = $math->evaluate($exp);
@@ -33,10 +37,13 @@
     var_dump($answer);echo "<br /><br />";
     // contains value that is not integer or boolean
     
+/**
+ * Tests
+ */    
     
 //Comparison Tests
 
-     $answer = $math->evaluate('-8 > 2');
+     $answer = $math->evaluate('(-8>2)');
     var_dump($answer);echo "<br /><br />";
     // boolean false
 
@@ -59,6 +66,32 @@
     $answer = $math->evaluate('-8 < 5');
     var_dump($answer);echo "<br /><br />";
     // boolean true
+    
+    /**
+     * IMPORTANT: known problems with comparison operators
+     */
+    
+    // Allowing more than 1 comparison is not possible
+    $answer = $math->evaluate('3 > 2 > 1');
+    var_dump($answer);echo "<br /><br />";
+    // boolean true because 3 > 2 is true. The final comparison is not evaluated
+    
+    // Division by zero if false
+    $answer = $math->evaluate('1 / (1 > 2)');
+    var_dump($answer);echo "<br /><br />";
+    // Leads to division by zero because '1 / false'
+        
+    // Comparison needs spaces
+    $answer = $math->evaluate('3>2');
+    var_dump($answer);echo "<br /><br />";
+    // Exception because this 3>2 is not a number
+    
+    // Unlogical calculation
+     $answer = $math->evaluate('(2<1)*1)'); // works but isn't logical, because it is multiplying a "boolean" 
+    var_dump($answer);echo "<br /><br />";
+    // int(0) but should not be a valid mathimatical answer
+    
+    
     
 //Positive Integer Tests
     
