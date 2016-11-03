@@ -51,19 +51,20 @@
     $answer = $math->evaluate('100 < -10+120'); // comparison has precedence over addition in the evaluation
     var_dump($answer);echo "<br /><br />";
     // boolean true
-    
-    $answer = $math->evaluate('(2-3) + 5');
+        
+    $answer = $math->evaluate('(6+2) < 5');
     var_dump($answer);echo "<br /><br />";
-    // int(4)
+    // boolean false
 
     $answer = $math->evaluate('-8 < 5');
     var_dump($answer);echo "<br /><br />";
     // boolean true
     
 //Positive Integer Tests
-    $answer = $math->evaluate('(6+2) < 5');
+    
+    $answer = $math->evaluate('(2-3) + 5');
     var_dump($answer);echo "<br /><br />";
-    // boolean false
+    // int(4)
 
     $answer = $math->evaluate('10 / 5');
     var_dump($answer);echo "<br /><br />";
